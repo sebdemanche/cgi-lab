@@ -23,11 +23,11 @@ The Cloud Shell machine is a small virtual machine running a Bash shell which yo
 2.  Once the cloud shell has started, enter the following command. Choose the key name you can remember. This will be the keyname you will use to connect to any compute instances you create. Press Enter twice for no passphrase.
 
     ````
-    <copy>mkdir .ssh</copy>
+    mkdir .ssh
     ````
 
     ````
-    <copy>cd .ssh</copy>
+    cd .ssh
     ````
 
     ````
@@ -43,7 +43,7 @@ The Cloud Shell machine is a small virtual machine running a Bash shell which yo
 3.  Examine the two files that you just created.
 
     ````
-    <copy>ls</copy>
+    ls
     ````
 
     ![](./images/examine-cloudshell-keys.png " ")
