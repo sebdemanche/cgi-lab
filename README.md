@@ -1,8 +1,8 @@
 ## Lab day 1
 
-[Create new account or signing into an existing one](pre-register-free-tier-account.md)
+[Createing a new account or signing into an existing one](pre-register-free-tier-account.md)
 
-[Create SSH Keys Using Oracle Cloud Shell](generate-ssh-keys-cloud-shell.md)
+[Creating SSH Keys Using Oracle Cloud Shell](generate-ssh-keys-cloud-shell.md)
 
 [Virtual Cloud Networks](virtual-cloud-networks.md)
 
