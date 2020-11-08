@@ -79,6 +79,7 @@ The purpose of this lab is to give you an overview of the Object Service and an 
 
 13. As this is a text file, it will open in your browser page.
 
+*You have completed this lab, you may proceed* [**to the next one**](load_balancer.md).
 
 ## Acknowledgements
 
