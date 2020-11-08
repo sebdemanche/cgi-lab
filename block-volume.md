@@ -100,6 +100,7 @@ A common usage of Block Volume is adding storage capacity to an Oracle Cloud Inf
 
     ![](images/format-mount.png " ")
 
+*You have completed this lab, you may proceed* [**to the next one**](object-storage.md).
 
 ## Acknowledgements
 
