@@ -189,7 +189,7 @@ You will create two web servers that will work as backend servers for your Publi
    - Press the **Create Load Balancer** button.
 
     **Note:** When a load balancer is created, it's assigned a public IP address to which you route all incoming traffic. The IP address is highly available across ADs.
-![](media/lbdetails1.png)
+![](images/lb-ip.png)
 
 2. Update the **LB-Security-List** to allow Internet Traffic to the Listener. Go to your VCN details page and perform the following tasks:
 
