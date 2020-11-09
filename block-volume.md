@@ -37,11 +37,11 @@ A common usage of Block Volume is adding storage capacity to an Oracle Cloud Inf
 
 3. Leave the encryption and tags options as their default values and click on **Create Block Volume**. The volume will be ready to attach once its icon no longer lists it as **PROVISIONING** in the volume list.
 
-   ![](images/create-livelabs.png)
+   ![](images/bv1.png)
 
-   ![](images/create-livelabs-prov.png)
+   ![](images/bv2.png)
 
-   ![](images/create-livelabs-avail.png)
+   ![](images/bv3.png)
 
 
 ## **STEP 2**: Attaching a Block Volume to an instance
@@ -54,7 +54,7 @@ A common usage of Block Volume is adding storage capacity to an Oracle Cloud Inf
 
 2. Go to the Compute instance Menu, and navigate to the VM instance you created before and click on the **Attached Block Volumes** link.
 
-    ![](images/livelabs-attach.png)
+    ![](images/bv4.png)
 
 3. Click on the **Attach Block Volume** button.
 
@@ -66,11 +66,11 @@ A common usage of Block Volume is adding storage capacity to an Oracle Cloud Inf
      - Click **Attach**
 
 
-   ![](images/livelabs-attach-block.png)
+   ![](images/bv5.png)
 
 5. Once the volume is attached, you can click on the ellipsis and then click **iSCSI Command and Information link.**
 
-    ![](images/livelabs-iscsi-link.png)
+    ![](images/bv6.png)
 
 6. Connect to the instance through SSH and **run the iSCSI ATTACH COMMANDS**.Click on **COPY** to copy all attach commands run all these commands by pasting it in the terminal:
 
