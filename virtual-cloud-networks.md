@@ -33,7 +33,7 @@ To create a VCN on Oracle Cloud Infrastructure:
     |                  **Field**              |    **Value**  |
     |----------------------------------------|:------------:|
     |VCN NAME |YourName_VCN|
-    |COMPARTMENT |  Choose the ***Workshop*** compartment
+    |COMPARTMENT |  Choose your ***Workshops*** compartment given to you by the instructor
     |VCN CIDR BLOCK|10.0.0.0/16|
     |PUBLIC SUNBET CIDR BLOCK|10.0.2.0/24|
     |PRIVATE SUBNET CIDR BLOCK|10.0.1.0/24
@@ -41,12 +41,12 @@ To create a VCN on Oracle Cloud Infrastructure:
 
     Your screen should look similar to the following:
 
-    ![Create a VCN Configuration|Foobar](images/setupVCN3.png " ")
+    ![Create a VCN Configuration|Foobar](images/setupVCN3-bis.png " ")
 
 4. Press the **Next** button at the bottom of the screen.
 
 5. Review your settings to be sure they are correct.
-    ![Review CV Configuration](images/setupVCN4.png " ")
+    ![Review CV Configuration](images/setupVCN4-bis.png " ")
 
 6. Press the **Create** button to create the VCN. It will take a moment to create the VCN and a progress screen will keep you apprised of the workflow.
 
