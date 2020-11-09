@@ -39,10 +39,10 @@ The following provides an overview of a simple Public Load Balancer:
 
 ## Practice-1: Creating Virtual Cloud Network
 
-1. Click on **Menu** --> **Networking** --> **Virtual Cloud Network**
-2. Click **Create Virtual Cloud Network** 
+1. Click on **Menu** --> **Networking** --> **Virtual Cloud Networks**
+2. Click **Create VCN** 
 
-   - **Name:** *VCN-WEB-YourName*
+   - **Name:** *Yourname-VCN-WEB*
    - **Select** *Create Virtual Cloud Network Only*
    - **CIDR Block:** *10.0.0.0/16*
    - Click the *Create Virtual Cloud Network* button.
@@ -57,12 +57,12 @@ The following provides an overview of a simple Public Load Balancer:
 
 4. Create another Security List:
    - **Security List Name:** *Web-Security-List*
-   - Click on **Additonal Ingress Rule** and enter:
+   - Click on **Another Ingress Rule** and enter:
        - **Source Type:** *CIDR*
        - **Source CIDR:** *0.0.0.0/0*
        - **IP Protocol:** *TCP*
        - **Destination Port Range:** *22*
-   - Click on **Additional Egress Rule** and enter:
+   - Click on **Another Egress Rule** and enter:
        - **Destination Type:** *CIDR*
        - **Destination CIDR:** *0.0.0.0/0*
        - **IP Protocol:** *All Protocols*
@@ -81,7 +81,7 @@ The following provides an overview of a simple Public Load Balancer:
 5. Create the following Route Table:
 
    - **Route Table Name:** *Route-Table*
-   - Click on the **+ Additional Route Rule** button
+   - Click on the **+ Another Route Rule** button
      - **Target Type:** *Internet Gateway*
      - **Destination CIDR Block:** *0.0.0.0/0*
    - **Target Internet Gateway:** *Select your Internet Gateway*
@@ -124,13 +124,13 @@ You will create two web servers that will work as backend servers for your Publi
 
 1. Create two Compute Instances with the following configuration:
 
-   - **Name:** *Web-Server-1-YourName*
+   - **Name:** *YourName-Web-Server-1*
    - **Availability Domain:** *AD 3*
-   - **Shape:** *VM.Standard.E2.1*
+   - **Shape:** *Specialty and Legacy -   VM.Standard.E2.1*
    - **VCN:** *the VCN you've just created in the previsous step*
    - **Subnet:** *web-subnet (Regional)* 
    - Click the **Assign a public IP address** button
-   - Paste your public SSH-Key
+   - Paste your public SSH-Key (created in the previous lab "Creating SSH Keys Using Oracle Cloud Shell")
    - Click the **Create** button.
 
     Repeat the previous steps, but this time enter the name **Web-Server-2** and select **AD 2**
@@ -144,40 +144,40 @@ You will create two web servers that will work as backend servers for your Publi
 
    - Install HTTP Server:
 	```
-	# sudo yum makecache && sudo yum install httpd -y
+	sudo yum makecache && sudo yum install httpd -y
 	```
    - Start the apache server and configure it to start after system reboots:
     ```
-    # sudo apachectl start
-    # sudo systemctl enable httpd
+    sudo apachectl start
+    sudo systemctl enable httpd
     ```
    - Run a quick check on apache configurations:
     ```
-    # sudo apachectl configtest
+    sudo apachectl configtest
     ```
    - Create firewall rules to allow access to the ports on which the HTTP server listens.
     ```
-    # sudo firewall-cmd --permanent --zone=public --add-service=http 
-    # sudo firewall-cmd --reload
+    sudo firewall-cmd --permanent --zone=public --add-service=http 
+    sudo firewall-cmd --reload
     ```
    - Create an index file for your **Web-Server-1**:
     ```
-    # sudo bash -c 'echo This is my Web-Server-1 running on Oracle Cloud Infrastructure >> /var/www/html/index.html'
+    sudo bash -c 'echo This is my Web-Server-1 running on Oracle Cloud Infrastructure >> /var/www/html/index.html'
     ```
 
    - Create an index file for your **Web-Server-2**:
     ```
-    # sudo bash -c 'echo This is my Web-Server-2 running on Oracle Cloud Infrastructure >> /var/www/html/index.html'
+    sudo bash -c 'echo This is my Web-Server-2 running on Oracle Cloud Infrastructure >> /var/www/html/index.html'
     ```
 
 ## Practice-3: Creating and Testing the Load Balancer
 
 1. In the Console, click **Menu** --> **Networking** --> **Load Balancers**. Click **Create Load Balancer** and enter the following paremeters:
 
-   - **Name:** *LB-Web-Servers-YourName*
+   - **Name:** *YourName-LB-Web-Servers*
    - **Visibility Type:** *Public Load Balancer*
    - **Maximum Total Bandwidth:** *100Mbps*
-   - **Virtual Cloud Network:** *VCN-WEB-YourName*
+   - **Virtual Cloud Network:** *YourName-VCN-WEB*
    - **Subnet:** *lb-subnet(regional)*
    - Press the **Next Step** button
    - **Load Balancing Policy:** *Weighted Round Robin*
@@ -202,24 +202,6 @@ You will create two web servers that will work as backend servers for your Publi
       - Click *Add Ingress Rules*
         ![](media/image13.png)
 
-3. On the left side click on  **Egress Rules**, click **Add Egress Rules** and Enter the following egress rule: 
-
-    - **Source CIDR:** *0.0.0.0/0*
-    -  **IP Protocol:** *All Protocols*
-    - Click *Add Egress Rules*
-
-        ![](media/image19.png)
-
-4. Update the **Web Security List** to allow traffic from Load Balancer to your Web-Servers. Go to your VCN details page and perform the following tasks:
-
-    - Click **Security Lists**
-    - Click on the **Web-Security-List**. This displays the details of the Web Security List
-    - Click **Add Ingress Rules** and enter:
-      -  **Source CIDR:** *10.0.1.0/24*
-      - **IP Protocol:** *TCP*
-      - **Destination Port Range:** *80*
-      - Click *Add Ingress Rules*
-        ![](media/image10.png)
 
 5. Test the functionality of the load balancer by navigating to its public IP address on a web browser.
     
