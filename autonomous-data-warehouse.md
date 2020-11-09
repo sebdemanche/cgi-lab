@@ -16,17 +16,9 @@ Oracle Autonomous Data Warehouse Cloud provides an easy-to-use, fully autonomous
 
 - Mac OS Users should use ctrl+C / ctrl+V to copy and paste inside the OCI Console
 
-- Login credentials are provided later in the guide (scroll down). Every User MUST keep these credentials handy.
-  
-    **Cloud Tenant Name**
+- Login credentials are provided later in the guide.
 
-    **User Name**
-
-    **Password**
-
-    **Compartment Name (Provided Later)**
-
-    **Note:** OCI UI is being updated thus some screenshots in the instructions might be different than actual UI
+    **Note:** OCI UI is being updated often, thus some screenshots in the instructions might be different to the latest UI.
 
 ### Prerequisites
 
@@ -36,7 +28,7 @@ Oracle Autonomous Data Warehouse Cloud provides an easy-to-use, fully autonomous
 
 3. [Overview of Networking](https://docs.us-phoenix-1.oraclecloud.com/Content/Network/Concepts/overview.htm)
 
-4. [Familiarity with Compartment](https://docs.us-phoenix-1.oraclecloud.com/Content/GSG/Concepts/concepts.htm)
+4. [Familiarity with Compartments](https://docs.us-phoenix-1.oraclecloud.com/Content/GSG/Concepts/concepts.htm)
 
 5. [Connecting to a compute instance](https://docs.us-phoenix-1.oraclecloud.com/Content/Compute/Tasks/accessinginstance.htm)
 
@@ -45,13 +37,6 @@ Oracle Autonomous Data Warehouse Cloud provides an easy-to-use, fully autonomous
 
 ## **Step 1:** Sign in to OCI Console and create ADW instance
 
-
-* **Tenant Name:** {{Cloud Tenant}}
-* **User Name:** {{User Name}}
-* **Password:** {{Password}}
-* **Compartment:**{{Compartment}}
-
-
 1. Sign in using your tenant name, user name and password.
 
 2. From the OCI Services menu, Click **Autonomous Data Warehouse** under **Database** and then **Create Autonomous Database**.
@@ -59,15 +44,15 @@ Oracle Autonomous Data Warehouse Cloud provides an easy-to-use, fully autonomous
 
 3. Fill out the dialog box:
 
-      - COMPARTMENT: Choose your compartment
-      - DISPLAY NAME: Provide a name, for ex. ADW-YourName
+      - COMPARTMENT: Choose your assigned compartment
+      - DISPLAY NAME: Provide a name, for ex. YourName-ADW
       - DATABASE NAME: Provide a name
       - Choose a Workload type: Data Warehouse
       - Choose a Deployment type: Shared Infrastructure
 
       Under **Configure the database**
 
-      - Always Free: Leave Default
+      - Always Free: Leave Default (unchecked)
       - Choose database version: Leave Default
       - OCPU count: 1
       - Auto Sclaing: Make sure flag is **Un-checked**
@@ -87,28 +72,28 @@ Oracle Autonomous Data Warehouse Cloud provides an easy-to-use, fully autonomous
 
       - License Included: Check this option
 
-4. Click **Create Autonomous Database**.
+4. Click **Create Autonomous Database** - this should take couple of minutes.
 
-5. Click Autonomous Data Warehouse Database instance name that you created to bring up Database details page. Click **DB Connection**.
+5. Once provisioned, click Autonomous Data Warehouse Database instance name that you created to bring up Database details page. Click **DB Connection**.
 
-6. In the pop up window Click **Download** under **Download Client Credentials (Wallet)**. Provide a password, Click **Download** and save the zip file on your computer (Note down zip file location).
+6. In the pop up window Click **Download** under **Download Client Credentials (Wallet)**. Provide a password, Click **Download** and save the wallet's zip file on your computer (Note down zip file location).
 
     **HINT:** You can use the same password that was used to create the instance or choose a new password for the wallet. Note down the password
 
     ![](images/ADW_004.PNG " ")
 
-We now have a Autonomous Data Warehouse instance created. We have also downloaded the Client Credentials file. We will use this file when connecting to the database instance  using Sql Developer. Next we will create a Data file and use Object stroage to upload it to Database instance.
+We now have a Autonomous Data Warehouse instance created and running. We have also downloaded the Client Credentials file "wallet". We will use this file when connecting to the database instance  using Sql Developer. Next we will create a Data file and use Object stroage to upload it to Database instance.
               
-## **Step 2:** Create Auth token for the user connect to ADW and load data
+## **Step 2:** Create Auth token for the user to connect to ADW and load data
 
-In this section we will generate auth token for the user of this lab. An Auth token is an Oracle-generated token that you can use to authenticate with third-party APIs and Autonomous Database instance.
+In this section we will generate an authentication token for the user of this lab. An Auth token is an Oracle-generated token that you can use to authenticate with third-party APIs and Autonomous Database instance.
 
 1. In OCI console Click the user icon (top right corner)  then **User settings**. Under Resrouces Click **Auth Token**, then **Generate Token**. In pop up window provide a description then Click **Generate Token**.
 
     ![](images/ADW_005.PNG " ")
     ![](images/ADW_006.PNG " ")
 
-2.  Click **Copy** and save the token in Notepad.**Do not close the window without saving the token as it can not be retrieved later**.
+2.  Click **Copy** and save the token in Notepad. **Do not close the window without saving the token as it can not be retrieved later**.
     ![](images/ADW_007.PNG " ")
 
 3. Note down your user name.
@@ -117,9 +102,8 @@ In this section we will generate auth token for the user of this lab. An Auth to
 
     **Screen shots for SQL developer are from 18.1.0 version**
 
-4. Launch SQL devleoper using Apps icon and Click **+** to create a new connection
+4. Launch SQL devleoper on your PC and Click **+** to create a new connection
 
-    ![](images/ADW_008.PNG " ")
     ![](images/ADW_009.PNG " ")
 
 5. Fill out the diaog box:
@@ -128,7 +112,7 @@ In this section we will generate auth token for the user of this lab. An Auth to
       - Username: admin
       - Password: Password used at ADW instance creation
       - Save Password: Check the flag
-      - Connection Type: Cloud PDB
+      - Connection Type: Cloud PDB (SQL Dev 18) or Cloud Wallet (SQL Dev 19)
       - Configuration file: File that was dowloaded from ADW service console (Client credenitla zip file)
       - Keystore password: Password you provided when downloading the client credentials file 
 
@@ -140,7 +124,7 @@ In this section we will generate auth token for the user of this lab. An Auth to
 
     ![](images/ADW_010.PNG " ")
 
-6. In the SQL worksheet, create a new user called ocitest and grant the DWROLE to ocitest user. Also grant this user table space quota to upload the data later on. Enter commands:
+6. In the opened SQL worksheet, create a new database user called ocitest and grant the DWROLE to ocitest user. Also grant this user table space quota to upload the data later on. To do this, enter the following commands:
     ```
     create user ocitest identified by P#ssw0rd12##;
     ```
@@ -153,7 +137,7 @@ In this section we will generate auth token for the user of this lab. An Auth to
     grant UNLIMITED TABLESPACE TO ocitest;
     ```
 
-7. Verify the user was created
+7. Verify the user was created successfully:
 
     ![](images/ADW_011.PNG " ")
 
@@ -163,7 +147,7 @@ In this section we will generate auth token for the user of this lab. An Auth to
       - Username: **OCITEST**
       - Password:  P#ssw0rd12##
       - Save Password: Check the flag
-      - Connection Type: Cloud PDB
+      - Connection Type: Cloud PDB or Cloud Wallet
       - Configuration file: File that was dowloaded from ADW service console (Client credenitla zip file)
       - Keystore password: Password you provided when downloading the client credentials file (NOTE:If using SQL devleoper 18.2.0 or higher this field is not available and not required)
       - Service: YOUR\_ADW\_INSTANCE\_NAME\_medium 
@@ -172,7 +156,7 @@ In this section we will generate auth token for the user of this lab. An Auth to
 
     ![](images/ADW_012.PNG " ")
 
-9. We will now download a text file from OCI Object storage. This file has PL/SQL commands that will be used to upload data into ADW and retrieve it. Open a new browser tab and copy/paste or Enter URL;
+9. We will now download a text file from OCI Object storage. This file contains PL/SQL commands that will be used to upload data into ADW and retrieve it. Open a new browser tab and copy/paste or Enter URL;
 
     **https://objectstorage.us-ashburn-1.oraclecloud.com/n/us_training/b/Lab-images/o/ADW-File.txt**
 
@@ -195,13 +179,13 @@ In this section we will generate auth token for the user of this lab. An Auth to
 
     **end;**
 
-    **NOTE:** user name should be your OCI user name and password should be the Auth Token generated earlier.
+    **NOTE:** **user name** should be your OCI console  user name and **password** should be the user's Auth Token generated earlier in this lab.
 
 11. Verify **PL/SQL Procedure successfully completed** message is displayed.
 
     ![](images/ADW_013.PNG " ")
 
-12. Create a new table (We will load data from file in Object Storage to this table). From the ADW-File.txt content copy and paste the commands undrer /**** Create Table ****/ section. The commands will look like below
+12. Create a new table (We will load data from file in Object Storage into this table). From the ADW-File.txt content copy and paste the commands undrer /**** Create Table ****/ section. The commands will look like below
 
     **CREATE TABLE CHANNELS (**
 
@@ -227,7 +211,7 @@ In this section we will generate auth token for the user of this lab. An Auth to
 
     **credential\_name =>'OCI\_CRED\_NAME',**
 
-    **file\_uri\_list =>'https://swiftobjectstorage.us-ashburn-1.oraclecloud.com/v1/us\_training/Lab-images/century\_names\_new.txt',format => json_object('delimiter' value ',', 'trimspaces' value 'lrtrim')**
+    **file\_uri\_list =>'https://swiftobjectstorage.us-ashburn-1.oraclecloud.com/v1/us\_training/Lab-images/century\_names\_new.txt', format => json_object('delimiter' value ',', 'trimspaces' value 'lrtrim')**
 
     **);**
 
@@ -237,7 +221,8 @@ In this section we will generate auth token for the user of this lab. An Auth to
 
     ![](images/ADW_015.PNG " ")
 
-16. In SQL Developer, we will now query the table and veirfy the data Enter command:
+16. In SQL Developer, we will now query the table and veirfy the data - to do this, enter the command:
+
     ```
     select * from channels;
     ```
