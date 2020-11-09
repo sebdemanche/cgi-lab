@@ -26,7 +26,7 @@ An Oracle Cloud Infrastructure VM compute instance runs on the same hardware as 
 
 2. Select the Compartment that you were assigned when the reservation was created.
 
-  ![](images/create-compute-livelabs-1.png)
+  ![](images/compute-1.png)
 
 
 2. Then click **Create Instance**. We will launch a VM instance for this lab.
@@ -34,10 +34,10 @@ An Oracle Cloud Infrastructure VM compute instance runs on the same hardware as 
 3. The Create Compute Instance wizard will launch.
 Enter your username + *-Instance* as the name of the server.
 
-![](images/create-compute-livelabs-2.png)
+![](images/compute-2.png)
 
 
-4. Click *Change Shape* to choose a VM shape.
+4. Click *Change Shape* to choose a different VM shape.
 
     ![](images/create-compute-livelabs-3.png)
 
@@ -45,13 +45,13 @@ Enter your username + *-Instance* as the name of the server.
 
     ![](images/create-compute-livelabs-4.png)
 
-3. In the Networks section, select the VCN you've created in the previous lab. Then, you will need to scroll down to the Configure Networking area of the page and select the *Assign a public IP address* option.
+3. In the Networks section, choose "Select Existing Virtual Network" and select the VCN you've created in the previous lab. Then, you will need to scroll down to the Configure Networking area of the page and select the *Assign a public IP address* option.
 
-    ![](images/create-compute-livelabs-4b.png)
+    ![](images/compute-4b.png)
 
     ***NOTE:*** *You need a public IP address so that you can SSH into the running instance later in this lab.*
 
-4. Scroll down to the SSH area of the page. Select "Paste Public Keys" and paste in the SSH key that you created earlier in ***Generate SSH Keys*** Lab. Press the **Create** button to create your instance.
+4. Scroll down to the SSH area of the page. Select "Paste Public Keys" and paste from Cloud Shell the contents of the **public** SSH key that you've created earlier in ***Generate SSH Keys*** Lab. Press the **Create** button to create your instance.
 
     ![](images/create-compute-livelabs-5.png)
 
@@ -66,11 +66,13 @@ Enter your username + *-Instance* as the name of the server.
 
 1. To connect to the instance, use Cloud Shell and enter the following command:
 
-    **Note:** For Oracle Linux VMs, the default username is **opc**
+    **Note:** For Oracle Linux VMs, the default username is **opc**. In this example, the private key file is **mykey**
 
     ```
-    ssh -i ~/.ssh/<private_ssh_key> opc@<public_ip_address>
+    ssh -i ~/.ssh/mykey opc@<public_ip_address>
     ```
+
+    type "yes" if a message `Are you sure you want to continue connecting (yes/no)?` appears.
     
 2. For this lab, we are going to install an Apache HTTP Webserver and try to connect to it over the public Internet. SSH into the Linux instance and run following commands:
 
@@ -108,9 +110,9 @@ Enter your username + *-Instance* as the name of the server.
       sudo bash -c 'echo This is my Web-Server running on Oracle Cloud Infrastructure >> /var/www/html/index.html'
       ```
 
-3. Open your browser and navigate to `http://Public-IPAddress` (the IP address of the Linux VM)
+3. Open your browser and navigate to `http://Public-IPAddress` (the public IP address of the Linux VM)
 
-    **NOTE:** Your browser will time out and not return anything because port 80 was not opened into the Security Lists yet!
+    **NOTE: Your browser will time out and not return anything because port 80 was not opened into the Security Lists yet!**
 
 4. Using the menu, click on **Virtual Cloud Network** and then open the VCN you created for this practice.
 
@@ -121,7 +123,7 @@ Enter your username + *-Instance* as the name of the server.
 
 6. Click on the **Default Security List**.
 
-7. Here you need to open port 80. Click on **+ Another Ingress Rule** and add the following values as shown below:
+7. Here you need to open port 80. Click on **Add Ingress Rules** and add the following values as shown below:
 
     - **Source Type:** CIDR
     - **Source CIDR**: 0.0.0.0/0
