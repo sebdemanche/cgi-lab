@@ -27,6 +27,8 @@ A common usage of Block Volume is adding storage capacity to an Oracle Cloud Inf
 
     **Note**: Must be between **50 GB** and **32 TB**. You can choose in 1 GB increments within this range. The default is 1024 GB)
 
+![](images/bv7.png)
+
      Quick recap on the block volume backup policies: There are three predefined backup policies, Bronze, Silver, and Gold Each backup policy has a set backup frequency and retention period.
 
     - **Bronze Policy:** The bronze policy includes monthly incremental backups, run on the first day of the month. These backups are retained for twelve months. This policy also includes a full backup, run yearly on January 1st. Full backups are retained for five years.
