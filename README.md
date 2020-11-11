@@ -18,4 +18,4 @@
 
 ## Lab day 3
 
-[Creating Autonomous Data Warehouse and loading data](autonomous-data-warehouse.md)
+[Creating Autonomous Data Warehouse and loading data - using SQL Developer WEB](autonomous-data-warehouse-websql.md)

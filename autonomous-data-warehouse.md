@@ -40,15 +40,17 @@ Oracle Autonomous Data Warehouse Cloud provides an easy-to-use, fully autonomous
 1. Sign in using your tenant name, user name and password.
 
 2. From the OCI Services menu, Click **Autonomous Data Warehouse** under **Database** and then **Create Autonomous Database**.
-    ![](images/ADW_001.PNG " ")
+    ![](images/adw1.png " ")
 
 3. Fill out the dialog box:
 
       - COMPARTMENT: Choose your assigned compartment
-      - DISPLAY NAME: Provide a name, for ex. YourName-ADW
-      - DATABASE NAME: Provide a name
+      - DISPLAY NAME: Provide a name, for ex. **YourName-ADW**
+      - DATABASE NAME: Leave it by default
       - Choose a Workload type: Data Warehouse
       - Choose a Deployment type: Shared Infrastructure
+
+    ![](images/adw2.png " ")
 
       Under **Configure the database**
 
@@ -57,10 +59,11 @@ Oracle Autonomous Data Warehouse Cloud provides an easy-to-use, fully autonomous
       - OCPU count: 1
       - Auto Sclaing: Make sure flag is **Un-checked**
 
+    ![](images/adw3.png " ")  
+
       Under **Create administrator credentials**
 
-      - Username: Provide a username 
-      - Password: Provide a password (example Oracle123!!!!)
+      - Password: Provide a password (example: **Oracle123!!!!**)
       - Confirm Password: Confirm the password provided
 
       Under **Choose network access**
@@ -72,6 +75,8 @@ Oracle Autonomous Data Warehouse Cloud provides an easy-to-use, fully autonomous
 
       - License Included: Check this option
 
+    ![](images/adw4.png " ")  
+
 4. Click **Create Autonomous Database** - this should take couple of minutes.
 
 5. Once provisioned, click Autonomous Data Warehouse Database instance name that you created to bring up Database details page. Click **DB Connection**.
@@ -82,7 +87,7 @@ Oracle Autonomous Data Warehouse Cloud provides an easy-to-use, fully autonomous
 
     ![](images/ADW_004.PNG " ")
 
-We now have a Autonomous Data Warehouse instance created and running. We have also downloaded the Client Credentials file "wallet". We will use this file when connecting to the database instance  using Sql Developer. Next we will create a Data file and use Object stroage to upload it to Database instance.
+We now have a Autonomous Data Warehouse instance created and running. We have also downloaded the Client Credentials file "wallet". We will use this file when connecting to the database instance  using Sql Developer. Next we will create a Data file and use Object storage to upload it to Database instance.
               
 ## **Step 2:** Create Auth token for the user to connect to ADW and load data
 
