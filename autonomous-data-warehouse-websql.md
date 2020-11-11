@@ -92,7 +92,7 @@ In this section we will generate an authentication token for the user of this la
 
 2.  Click **Copy** and save the token (for example in Notepad). **Do not close the window without saving the token as it can not be retrieved later**.
 
-![](images/adw14.PNG " ")
+![](images/adw14.png " ")
 
 3. Note down your OCI user name.
 
