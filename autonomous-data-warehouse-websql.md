@@ -87,12 +87,12 @@ In this section we will generate an authentication token for the user of this la
 
 1. In OCI console Click the user icon (top right corner)  then **User settings**. Under Resrouces Click **Auth Token**, then **Generate Token**. In pop up window provide a description then Click **Generate Token**.
 
-    ![](images/ADW_005.PNG " ")
-    ![](images/ADW_006.PNG " ")
+![](images/ADW_005.PNG " ")
+![](images/ADW_006.PNG " ")
 
 2.  Click **Copy** and save the token (for example in Notepad). **Do not close the window without saving the token as it can not be retrieved later**.
 
-    ![](images/adw14.PNG " ")
+![](images/adw14.PNG " ")
 
 3. Note down your OCI user name.
 
