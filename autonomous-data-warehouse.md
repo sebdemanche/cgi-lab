@@ -5,7 +5,7 @@
 Oracle Autonomous Data Warehouse Cloud provides an easy-to-use, fully autonomous database that scales elastically, delivers fast query performance and requires no database administration. In this hands on lab, we will walk through deploying an Autonomous Data Warehouse database and loading a table using a text file that is stored in object storage. The purpose of this lab is to get familiar with Oracle Autonomous Data Warehouse primitives. At the end of this lab, you will be familiar with launching an Autonomous Data Warehouse database, creating an object storage bucket and loading a table using a text file stored in object storage
 
 **Some Key points:**
-
+ 
 *We recommend using Chrome or Edge as the broswer. Also set your browser zoom to 80%*
 
 - All screen shots are examples ONLY. Screen shots can be enlarged by Clicking on them
