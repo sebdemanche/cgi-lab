@@ -96,7 +96,7 @@ In this section we will generate an authentication token for the user of this la
 
 3. Note down your OCI user name.
 
-    **Next we will connect to this ADW instane using SQL developer Web.**
+    **Next we will connect to this ADW instance using SQL developer Web.**
 
 ## **Step 3: Load the data**
 
